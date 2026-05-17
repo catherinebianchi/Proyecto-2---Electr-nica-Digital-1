@@ -1,17 +1,17 @@
 //Proyecto 2 - Electrónica Digital 1
 const int boton1 = 3;
-const int boton2 = 4;
-const int a = 10;
-const int b = 11; 
-const int c = 6; 
-const int d = 7;
-const int e = 8; 
+const int boton2 = 2;
+const int a = 7;
+const int b = 8; 
+const int c = 10; 
+const int d = 11;
+const int e = 12; 
 const int f = 9;
-const int g = 5;
+const int g = 6;
 
 int display = 0;
 int salida = 0;
-int contador = 0;
+int modo = 0;
 
 //Prototipo de funciones
 void display0();
@@ -38,26 +38,6 @@ pinMode(g, OUTPUT);
 }
 
 void loop() {
-//Funciones
-void display0(){
-  digitalWrite(a,HIGH);
-  digitalWrite(b,HIGH);
-  digitalWrite(c,HIGH); 
-  digitalWrite(d,HIGH); 
-  digitalWrite(e,HIGH); 
-  digitalWrite(f,HIGH);
-}
-void display1(){
-  digitalWrite(b,HIGH); 
-  digitalWrite(c,HIGH);
-}
-void display2(){
-  digitalWrite(a,HIGH); 
-  digitalWrite(b,HIGH); 
-  digitalWrite(g,HIGH); 
-  digitalWrite(d,HIGH); 
-  digitalWrite(e,HIGH);
-}
 
 //anti rebote
 int estado = digitalRead(boton1);
@@ -68,18 +48,26 @@ if (estado==HIGH){
 }
 if((estado==LOW)&&(salida==1)){
   delay(15);
-  contador++;
-  if(contador>2){
-    contador=0;
+  modo=modo+1;
+  if(modo>2){
+    modo=0;
   }
-}
-switch(contador){
-  case 0: display0(); break;
-  case 1: display1(); break;
-  case 2: display2(); break;
+  salida=0;
 }
 
-
-if((salida=0))
+//Apagar Display
+digitalWrite(a,LOW);
+digitalWrite(b,LOW);
+digitalWrite(c,LOW);
+digitalWrite(d,LOW);
+digitalWrite(e,LOW);
+digitalWrite(f,LOW);
+digitalWrite(g,LOW);
+  
+switch(modo){
+  case 0: digitalWrite(a,HIGH); digitalWrite(b,HIGH); digitalWrite(c,HIGH); digitalWrite(d,HIGH); digitalWrite(e,HIGH); digitalWrite(f,HIGH); break;
+  case 1: digitalWrite(b,HIGH); digitalWrite(c,HIGH); break;
+  case 2: digitalWrite(a,HIGH); digitalWrite(b,HIGH); digitalWrite(g,HIGH); digitalWrite(d,HIGH); digitalWrite(e,HIGH); break;
+}
 
 }
