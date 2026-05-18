@@ -1,6 +1,9 @@
 //Proyecto 2 - Electrónica Digital 1
+//Botones
 const int boton1 = 4;
 const int boton2 = 2;
+
+//Display
 const int a = 7;
 const int b = 8; 
 const int c = 10; 
