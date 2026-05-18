@@ -94,6 +94,12 @@ switch(modo){
   case 2: digitalWrite(a,HIGH); digitalWrite(b,HIGH); digitalWrite(g,HIGH); digitalWrite(d,HIGH); digitalWrite(e,HIGH); break;
 }
 
+//MODO 0
+if(modo==0){
+  miServo.write(0);
+  color(0,0,0);
+}
+
 //MODO 1
 if(modo == 1){
   miServo.write(angulo);
@@ -118,5 +124,10 @@ if(modo == 1){
 }
 
 
-
+}
+//Funciones
+void color(int rojo, int verde, int azul){
+  analogWrite(LEDrojo, rojo);
+  analogWrite(LEDverde, verde);
+  analogWrite(LEDazul, azul);
 }
