@@ -1,22 +1,28 @@
 //Proyecto 2 - Electrónica Digital 1
-const int boton1 = 3;
+const int boton1 = 4;
 const int boton2 = 2;
 const int a = 7;
 const int b = 8; 
 const int c = 10; 
 const int d = 11;
-const int e = 12; 
+const int e = 13; 
 const int f = 9;
-const int g = 6;
+const int g = A3;
 
 int display = 0;
 int salida = 0;
 int modo = 0;
 
+//Buzzer
+const int buzzer = A4;
+
+//LedRGB
+const int LEDrojo = 6;
+const int LEDverde = 5;
+const int LEDazul = 3;
+
 //Prototipo de funciones
-void display0();
-void display1();
-void display2();
+void color(int rojo, int verde, int azul);
 
 void setup() {
 //Botones
@@ -32,13 +38,15 @@ pinMode(e, OUTPUT);
 pinMode(f, OUTPUT);
 pinMode(g, OUTPUT);
 
-//Servo
 //LedRGB
+pinMode(LEDrojo,OUTPUT);
+pinMode(LEDverde,OUTPUT);
+pinMode(LEDazul,OUTPUT);
 
 }
 
 void loop() {
-
+//DISPLAY
 //anti rebote
 int estado = digitalRead(boton1);
 int estado2 = digitalRead(boton2);
