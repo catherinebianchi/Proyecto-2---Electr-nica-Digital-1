@@ -17,9 +17,13 @@ const int g = A3;
 int display = 0;
 int salida = 0;
 int modo = 0;
+int salida2 = 0;
+int temp;
 
 //Buzzer
 const int buzzer = A4;
+int alarma = 0;
+int apagada = 0;
 
 //LedRGB
 const int LEDrojo = 6;
@@ -59,6 +63,9 @@ pinMode(LEDazul,OUTPUT);
 miServo.attach(12);
 pinMode(potPin, INPUT);
 miServo.write(angulo);
+
+//Buzzer
+pinMode(buzzer,OUTPUT);
 
 }
 
@@ -121,10 +128,72 @@ if(modo == 1){
     color(0,0,0);
     delay(250);
   }
+}//Fin modo 1
+
+//MODO 2
+if(modo == 2){
+
+int estado2 = digitalRead(boton2);
+if(estado2==HIGH){
+  salida2=1;
 }
 
+if((estado2==LOW)&&(salida2==1)){
+  alarma = 0;
+  apagada = 1;
+  delay(15);
+  salida2=0;
+  }
+
+
+  potValue = analogRead(potPin);
+  temp = map(potValue, 0, 1023, 93, 104); //Temperatura según potenciómetro
+  delay(200);
+
+if(temp<95){
+  color(255,0,255); //Morado
+  miServo.write(0);
+  if((alarma == 0)&&(apagada==0)){
+    alarma = 1;
+  }
+  }
+
+ else if((temp>95)&&(temp<98)){
+  color(0,255,255); //Cyan o celeste
+  miServo.write(45);
+  alarma = 0;
+  apagada=0;
+
+} else if ((temp>98)&&(temp<100)){
+  color(255,255,0); //Amarillo
+  miServo.write(90);
+  alarma = 0;
+  apagada=0;
+
+} else if ((temp>100)&&(temp<102)){
+  color(255,160,0); //Anaranjado
+  miServo.write(135);
+  alarma = 0;
+  apagada=0;
+
+} else if(temp>102){
+  color(255,255,255); //Blanco
+  miServo.write(180);
+  if ((alarma == 0)&&(apagada==0)){
+    alarma = 1;
+  }
+  }
+
+if(alarma == 1){
+  digitalWrite(buzzer, HIGH);
+} else{
+  digitalWrite(buzzer, LOW);
+}
+
+}//Fin modo 2
 
 }
+
 //Funciones
 void color(int rojo, int verde, int azul){
   analogWrite(LEDrojo, rojo);
