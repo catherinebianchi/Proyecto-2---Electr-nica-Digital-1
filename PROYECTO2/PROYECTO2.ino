@@ -6,13 +6,13 @@ const int boton1 = 4;
 const int boton2 = 2;
 
 //Display
-const int a = 7;
-const int b = 8; 
-const int c = 10; 
+const int a = 8;
+const int b = A3; 
+const int c = 13; 
 const int d = 11;
-const int e = 13; 
-const int f = 9;
-const int g = A3;
+const int e = 10; 
+const int f = 7;
+const int g = 9;
 
 int display = 0;
 int salida = 0;
