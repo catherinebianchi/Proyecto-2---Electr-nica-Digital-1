@@ -1,4 +1,4 @@
-# Proyecto-2 - Monitor de Paciente Dual
+# Proyecto 2 - Monitor de Paciente Dual
 Este es un sistema que simula un monitor biomédico con tres modos de operación. Integra sensores (potenciómetro), un display de 7 segmentos, LED RGB, servomotor y un buzzer para representar condiciones fisiológicas de un paciente. 
 
 
